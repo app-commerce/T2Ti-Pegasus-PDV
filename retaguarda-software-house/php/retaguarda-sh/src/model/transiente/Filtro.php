@@ -5,23 +5,22 @@
 /// https://github.com/nestjsx/crud/wiki/Requests
 class Filtro implements \JsonSerializable
 {
-    public $campo;
-    public $valor;
-    public $dataInicial;
-    public $dataFinal;
-    public $where;
-	
-    public function __construct($filter)
-    {
+	public $campo;
+	public $valor;
+	public $dataInicial;
+	public $dataFinal;
+	public $where;
+
+	public function __construct($filter)
+	{
 		if (isset($filter)) {
 			$partesDoFiltro = explode('?', $filter);
-			
-			for ($i=0; $i < count($partesDoFiltro); $i++) { 
+
+			for ($i = 0; $i < count($partesDoFiltro); $i++) {
 
 				$condicoes = explode('||', $partesDoFiltro[$i]);
 
-				if ($i > 0)
-				{
+				if ($i > 0) {
 					$this->where = $this->where . " AND ";
 				}
 
@@ -42,7 +41,7 @@ class Filtro implements \JsonSerializable
 					$campoPesquisa = Biblioteca::camelCase($this->campo);
 					$this->where = $this->where . " $campoPesquisa = '" . $this->valor . "'";
 				}
-				
+
 				// $between (BETWEEN, between, accepts two values)
 				if ($condicoes[1] == '$between') {
 					$datas = explode(',', $condicoes[2]);
@@ -53,24 +52,23 @@ class Filtro implements \JsonSerializable
 					$campoPesquisa = Biblioteca::camelCase($this->campo);
 					$this->where = $this->where . " $campoPesquisa between '" . $this->dataInicial . "' and '" . $this->dataFinal . "'";
 				}
-		
-			}			
+			}
 		}
 	}
 
 
 
-    /**
-     * {@inheritdoc}
-     */
-    public function jsonSerialize()
-    {
-        return [
-            'campo' => $this->campo,
-            'valor' => $this->valor,
-            'dataInicial' => $this->dataInicial,
-            'dataFinal' => $this->dataFinal,
-            'where' => $this->where,
-        ];
-    }
+	/**
+	 * {@inheritdoc}
+	 */
+	public function jsonSerialize(): mixed
+	{
+		return [
+			'campo' => $this->campo,
+			'valor' => $this->valor,
+			'dataInicial' => $this->dataInicial,
+			'dataFinal' => $this->dataFinal,
+			'where' => $this->where,
+		];
+	}
 }

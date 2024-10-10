@@ -2,19 +2,19 @@
 
 class ObjetoNfe implements \JsonSerializable
 {
-	public $cnpj;
-	public $justificativa;
-	public $ano;
-	public $modelo;
-	public $serie;
-	public $numeroInicial;
-	public $numeroFinal;
-	public $chaveAcesso;
+    public $cnpj;
+    public $justificativa;
+    public $ano;
+    public $modelo;
+    public $serie;
+    public $numeroInicial;
+    public $numeroFinal;
+    public $chaveAcesso;
 
     /**
      * {@inheritdoc}
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
         return [
             'cnpj' => $this->cnpj,
@@ -27,6 +27,4 @@ class ObjetoNfe implements \JsonSerializable
             'chaveAcesso' => $this->chaveAcesso
         ];
     }
-
-
 }

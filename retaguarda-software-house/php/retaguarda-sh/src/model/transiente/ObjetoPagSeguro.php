@@ -3,20 +3,20 @@
 /// classe transiente que armazena o objeto enviado pelo PagSeguro
 class ObjetoPagSeguro implements \JsonSerializable
 {
-	public $codigoTransacao;
-	public $statusTransacao;
-	public $codigoStatusTransacao;
-	public $emailCliente;
-	public $metodoPagamento;
-	public $codigoTipoPagamento;
-	public $codigoProduto;
-	public $descricaoProduto;
-	public $valorUnitario;
+    public $codigoTransacao;
+    public $statusTransacao;
+    public $codigoStatusTransacao;
+    public $emailCliente;
+    public $metodoPagamento;
+    public $codigoTipoPagamento;
+    public $codigoProduto;
+    public $descricaoProduto;
+    public $valorUnitario;
 
     /**
      * {@inheritdoc}
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
         return [
             'codigoTransacao' => $this->codigoTransacao,
@@ -30,6 +30,4 @@ class ObjetoPagSeguro implements \JsonSerializable
             'valorUnitario' => $this->valorUnitario
         ];
     }
-
-
 }

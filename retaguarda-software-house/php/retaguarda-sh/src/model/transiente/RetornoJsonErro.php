@@ -37,7 +37,7 @@ class RetornoJsonErro implements \JsonSerializable
     /**
      * {@inheritdoc}
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
         return [
             'status' => $this->status,
@@ -46,6 +46,4 @@ class RetornoJsonErro implements \JsonSerializable
             'trace' => $this->trace
         ];
     }
-
-
 }
